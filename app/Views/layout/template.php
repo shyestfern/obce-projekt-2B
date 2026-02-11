@@ -7,6 +7,7 @@
     <?= $this->include("layout/css"); ?>
 </head>
 <body>
+<?= $this->include("layout/navbar"); ?>
     <div class="container">
         <?= $this->renderSection("content"); ?>
     </div>
