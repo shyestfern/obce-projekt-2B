@@ -28,4 +28,9 @@ class Main extends BaseController
     {
         echo view('index', $this->data);
     }
+
+    public function okres()
+    {
+        echo view('okres', $this->data);
+    }
 }
