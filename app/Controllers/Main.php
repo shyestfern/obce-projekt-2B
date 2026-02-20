@@ -31,14 +31,21 @@ class Main extends BaseController
     {   
         echo view('index', $this->data);
     }
-
+/**
+ * @param $kod - číslo okresu (sloupec 'kod' v tabulce okresů)
+ */
     public function okres($kod)
     {
-        $dataObce = $this->okres->join('obec', 'okres.kod = obec.okres', 'inner')
+        $dataObce = $this->okres->select('obec.nazev, Count(*) as pocet')->join('obec', 'okres.kod = obec.okres', 'inner')
             ->join('cast_obce', 'obec.kod = cast_obce.obec', 'inner')
             ->join('ulice', 'cast_obce.kod = ulice.kod', 'inner')
-            ->join('adresni_misto', '', 'inner');
+            ->join('adresni_misto', 'ulice.kod = adresni_misto.ulice', 'inner')
+            ->where('okres.kod', $kod)->groupBy('obec.kod')->orderBy('pocet', 'desc')->findAll();
 
+        $this->data += [
+            "obec" => $dataObce
+        ];
+        
         echo view('okres', $this->data);
     }
 }
