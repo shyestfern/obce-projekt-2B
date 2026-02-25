@@ -6,8 +6,8 @@
     $table = new \CodeIgniter\View\Table();
     $table->setHeading('Název obce', 'Počet');
 
-    foreach($okres as $row){
-        $table->addRow($row);
+    foreach($obec as $row){
+        $table->addRow($row->nazev, $row->pocet);
     }
 
     $template = array(
@@ -30,6 +30,9 @@
         'cell_alt_end' => '</td>',
         'table_close' => '</table>'
     );
+
+    $table->setTemplate($template);
+    echo $table->generate();
 ?>
 
 <?= $this->endSection(); ?>
