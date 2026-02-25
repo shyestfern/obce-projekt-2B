@@ -26,11 +26,6 @@ class Main extends BaseController
             "okres" => $dataOkres
         ];
     }
-    
-    public function index()
-    {   
-        echo view('index', $this->data);
-    }
 /**
  * @param $kod - číslo okresu (sloupec 'kod' v tabulce okresů)
  */
@@ -47,5 +42,10 @@ class Main extends BaseController
         ];
         
         echo view('okres', $this->data);
+    }
+
+    public function index()
+    {   
+        echo view('index', $this->data);
     }
 }
