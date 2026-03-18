@@ -35,10 +35,14 @@ class Main extends BaseController
             ->join('cast_obce', 'obec.kod = cast_obce.obec', 'inner')
             ->join('ulice', 'cast_obce.kod = ulice.kod', 'inner')
             ->join('adresni_misto', 'ulice.kod = adresni_misto.ulice', 'inner')
-            ->where('okres.kod', $kod)->groupBy('obec.kod')->orderBy('pocet', 'desc')->findAll();
+            ->where('okres.kod', $kod)->groupBy('obec.kod')->orderBy('pocet', 'desc')->paginate(20);
+
+        
+        $pager = $this->okres->pager;
 
         $this->data += [
-            "obec" => $dataObce
+            "obec" => $dataObce,
+            "pager" => $pager
         ];
         
         echo view('okres', $this->data);

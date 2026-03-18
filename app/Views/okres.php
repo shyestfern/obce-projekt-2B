@@ -33,6 +33,7 @@
 
     $table->setTemplate($template);
     echo $table->generate();
+    echo $pager->links();
 ?>
 
 <?= $this->endSection(); ?>
