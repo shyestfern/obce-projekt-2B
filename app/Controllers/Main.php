@@ -26,21 +26,24 @@ class Main extends BaseController
             "okres" => $dataOkres
         ];
     }
+
 /**
  * @param $kod - číslo okresu (sloupec 'kod' v tabulce okresů)
  */
-    public function okres($kod)
+
+    public function okres($kod, $strankovani)
     {
         $dataObce = $this->okres->select('obec.nazev, Count(*) as pocet')->join('obec', 'okres.kod = obec.okres', 'inner')
             ->join('cast_obce', 'obec.kod = cast_obce.obec', 'inner')
             ->join('ulice', 'cast_obce.kod = ulice.kod', 'inner')
             ->join('adresni_misto', 'ulice.kod = adresni_misto.ulice', 'inner')
-            ->where('okres.kod', $kod)->groupBy('obec.kod')->orderBy('pocet', 'desc')->paginate(20);
+            ->where('okres.kod', $kod)->groupBy('obec.kod')->orderBy('pocet', 'desc')->paginate($strankovani);
 
         
         $pager = $this->okres->pager;
 
         $this->data += [
+            "kodOkresu" => $kod,
             "obec" => $dataObce,
             "pager" => $pager
         ];

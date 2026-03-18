@@ -2,6 +2,11 @@
 
 <?= $this->section("content"); ?>
 
+<?= anchor('okres/'.$kodOkresu.'/strankovani/10', 'Po 10', ['class' => 'btn btn-primary m-2']) ?>
+<?= anchor('okres/'.$kodOkresu.'/strankovani/20', 'Po 20', ['class' => 'btn btn-primary m-2']) ?>
+<?= anchor('okres/'.$kodOkresu.'/strankovani/50', 'Po 50', ['class' => 'btn btn-primary m-2']) ?>
+<?= anchor('okres/'.$kodOkresu.'/strankovani/100', 'Po 100', ['class' => 'btn btn-primary m-2']) ?>
+
 <?php
     $table = new \CodeIgniter\View\Table();
     $table->setHeading('Název obce', 'Počet');

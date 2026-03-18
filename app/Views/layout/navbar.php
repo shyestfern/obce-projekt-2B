@@ -14,7 +14,7 @@
                 ?>
 
                     <li class="nav-item">
-                        <?= anchor('okres/'.$row->kod, $row->nazev, ['class'=>'nav-link']) ?>
+                        <?= anchor('okres/'.$row->kod.'/strankovani/20', $row->nazev, ['class'=>'nav-link']) ?>
                     </li>
 
                 <?php
