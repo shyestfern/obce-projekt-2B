@@ -4,10 +4,10 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading('Název obce', 'Počet');
+    $table->setHeading('Název obce', 'Okres', 'Počet');
 
     foreach($dataIndex as $row){
-        $table->addRow($row->nazev, $row->pocet);
+        $table->addRow($row->nazev, $row->nazevOkresu, $row->pocet);
     }
 
     $template = array(
