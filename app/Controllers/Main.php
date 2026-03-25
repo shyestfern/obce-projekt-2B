@@ -53,6 +53,16 @@ class Main extends BaseController
 
     public function index()
     {   
+        $dataIndex = $this->okres->select('obec.nazev, Count(*) as pocet')->join('obec', 'okres.kod = obec.okres', 'inner')
+            ->join('cast_obce', 'obec.kod = cast_obce.obec', 'inner')
+            ->join('ulice', 'cast_obce.kod = ulice.kod', 'inner')
+            ->join('adresni_misto', 'ulice.kod = adresni_misto.ulice', 'inner')
+            ->groupBy('obec.kod')->orderBy('pocet', 'desc')->findAll();
+
+            $this->data += [
+                "dataIndex" => $dataIndex
+            ];
+        
         echo view('index', $this->data);
     }
 }

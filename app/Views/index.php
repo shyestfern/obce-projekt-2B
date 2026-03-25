@@ -4,9 +4,11 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading('Okres', 'Název obce', 'Počet');
+    $table->setHeading('Název obce', 'Počet');
 
-    
+    foreach($dataIndex as $row){
+        $table->addRow($row->nazev, $row->pocet);
+    }
 
     $template = array(
         'table_open'=> '<table class="table table-bordered">',
